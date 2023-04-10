@@ -11,7 +11,7 @@
     "lms",
     "nodejs"
   ],
-  "author": "",
+  "author": "I-Novotek Academy",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
