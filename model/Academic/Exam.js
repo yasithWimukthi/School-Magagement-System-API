@@ -47,6 +47,7 @@ const examSchema = new Schema(
     examDate: {
       type: Date,
       required: true,
+      default: new Date(),
     },
     examTime: {
       type: String,
@@ -60,7 +61,7 @@ const examSchema = new Schema(
     examStatus: {
       type: String,
       required: true,
-      default: "Pending",
+      default: "pending",
       enum: ["pending", "live"],
     },
     questions: [
