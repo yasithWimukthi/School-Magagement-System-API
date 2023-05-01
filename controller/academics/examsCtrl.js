@@ -84,3 +84,57 @@ exports.getExam = AysncHandler(async (req, res) => {
     data: exams,
   });
 });
+
+//@desc   Update  Exam
+//@route  PUT /api/v1/exams/:id
+//@acess  Private  - Teacher only
+
+exports.updatExam = AysncHandler(async (req, res) => {
+  const {
+    name,
+    description,
+    subject,
+    program,
+    academicTerm,
+    duration,
+    examDate,
+    examTime,
+    examType,
+    createdBy,
+    academicYear,
+    classLevel,
+  } = req.body;
+  //check name exists
+  const examFound = await Exam.findOne({ name });
+  if (examFound) {
+    throw new Error("Exam already exists");
+  }
+
+  const examUpdated = await Exam.findByIdAndUpdate(
+    req.params.id,
+    {
+      name,
+      description,
+      subject,
+      program,
+      academicTerm,
+      duration,
+      examDate,
+      examTime,
+      examType,
+      createdBy,
+      academicYear,
+      classLevel,
+      createdBy: req.userAuth._id,
+    },
+    {
+      new: true,
+    }
+  );
+
+  res.status(201).json({
+    status: "success",
+    message: "Exam  updated successfully",
+    data: examUpdated,
+  });
+});
