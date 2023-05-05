@@ -39,11 +39,11 @@ exports.createProgram = AysncHandler(async (req, res) => {
 //@acess  Private
 
 exports.getPrograms = AysncHandler(async (req, res) => {
-  const classes = await Program.find();
+  const programs = await Program.find();
   res.status(201).json({
     status: "success",
     message: "Programs fetched successfully",
-    data: classes,
+    data: programs,
   });
 });
 
