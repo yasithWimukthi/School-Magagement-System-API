@@ -64,12 +64,7 @@ exports.createExam = AysncHandler(async (req, res) => {
 //@acess  Private
 
 exports.getExams = AysncHandler(async (req, res) => {
-  const exams = await Exam.find().populate({
-    path: "questions",
-    populate: {
-      path: "createdBy",
-    },
-  });
+  const exams = await Exam.find();
   res.status(201).json({
     status: "success",
     message: "Exams fetched successfully",
